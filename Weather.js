@@ -64,22 +64,26 @@ const weatherOptions = {
     },
 }
 export default function Weather({ temp, condition }) {
+    console.log(condition)
     return (
-        <LinearGradient colors={weatherOptions[condition].gradient} style={styles.container}>
+        <View style={styles.container}>
             <StatusBar barStyle="light-content"></StatusBar>
-            <View style={styles.halfContainer}>
+            <LinearGradient
+                colors={weatherOptions[condition].gradient}
+                style={{ ...styles.halfContainer, ...styles.borderRadius }}
+            >
                 <MaterialCommunityIcons
                     size={96}
                     name={weatherOptions[condition].iconName}
                     color="white"
                 ></MaterialCommunityIcons>
                 <Text style={styles.temp}>{temp}˚</Text>
-            </View>
+            </LinearGradient>
             <View style={{ ...styles.halfContainer, ...styles.textContianer }}>
                 <Text style={styles.title}>{condition}</Text>
                 <Text style={styles.subtitle}>It's {condition} day!</Text>
             </View>
-        </LinearGradient>
+        </View>
     )
 }
 
@@ -107,8 +111,6 @@ Weather.propTypes = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
     },
     temp: {
         fontSize: 42,
@@ -120,7 +122,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     title: {
-        color: "white",
+        color: "#222222",
         fontSize: 64,
         fontWeight: "300",
         marginBottom: 12,
@@ -129,8 +131,13 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         color: "white",
         fontSize: 16,
+        color: "#5f5f5f",
     },
     textContianer: {
-        paddingHorizontal: 20,
+        backgroundColor: "#fff",
+    },
+    borderRadius: {
+        borderBottomLeftRadius: 60,
+        borderBottomRightRadius: 60,
     },
 })
